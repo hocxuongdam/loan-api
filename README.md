@@ -7,7 +7,14 @@
 
 ```sh
 chmod +x setup-project.sh
+```
+
+```sh
 ./setup-project.sh
+```
+### Shutdown server
+```shell
+ docker compose down  
 ```
 
 ## API
