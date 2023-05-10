@@ -16,6 +16,10 @@ chmod +x setup-project.sh
 ```shell
  docker compose down  
 ```
+### To run the project after the first time
+```shell
+docker compose up -d
+```
 
 ## API
 - Base URL: http://localhost:8000
