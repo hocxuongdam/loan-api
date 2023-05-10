@@ -1,0 +1,624 @@
+openapi: 3.0.3
+info:
+  title: 'Loan API'
+  description: 'Mini Aspire API'
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost:8000'
+paths:
+  /api/v1/login:
+    post:
+      summary: Login
+      operationId: login
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    token: bearer_token
+                  success:
+                    message: Success
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: bearer_token
+                  success:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: Success
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errors: Unauthenticated
+                properties:
+                  errors:
+                    type: string
+                    example: Unauthenticated
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Email. Must be a valid email address.'
+                  example: duymai@gmail.com
+                password:
+                  type: string
+                  description: Password.
+                  example: password
+              required:
+                - email
+                - password
+      security: []
+  /api/v1/loans:
+    get:
+      summary: List
+      operationId: list
+      description: 'List all current loans of the authenticated user'
+      parameters:
+        -
+          in: query
+          name: status
+          description: 'Status. Must be one of <code>pending</code>, <code>approved</code>, <code>rejected</code>, or <code>paid</code>.'
+          example: approved
+          required: false
+          schema:
+            type: string
+            description: 'Status. Must be one of <code>pending</code>, <code>approved</code>, <code>rejected</code>, or <code>paid</code>.'
+            example: approved
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      amount: '60000.00'
+                      term: 12
+                      term_unit: Week
+                      status: Approved
+                    -
+                      id: 2
+                      amount: '238000.00'
+                      term: 10
+                      term_unit: Week
+                      status: Approved
+                    -
+                      id: 3
+                      amount: '137000.00'
+                      term: 6
+                      term_unit: Week
+                      status: Approved
+                    -
+                      id: 4
+                      amount: '210000.00'
+                      term: 12
+                      term_unit: Week
+                      status: Approved
+                    -
+                      id: 5
+                      amount: '284000.00'
+                      term: 6
+                      term_unit: Week
+                      status: Approved
+                    -
+                      id: 6
+                      amount: '94000.00'
+                      term: 11
+                      term_unit: Week
+                      status: Approved
+                    -
+                      id: 7
+                      amount: '103000.00'
+                      term: 7
+                      term_unit: Week
+                      status: Approved
+                    -
+                      id: 11
+                      amount: '30000.00'
+                      term: 3
+                      term_unit: Week
+                      status: Approved
+                  success: true
+                  message: Success
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        amount: '60000.00'
+                        term: 12
+                        term_unit: Week
+                        status: Approved
+                      -
+                        id: 2
+                        amount: '238000.00'
+                        term: 10
+                        term_unit: Week
+                        status: Approved
+                      -
+                        id: 3
+                        amount: '137000.00'
+                        term: 6
+                        term_unit: Week
+                        status: Approved
+                      -
+                        id: 4
+                        amount: '210000.00'
+                        term: 12
+                        term_unit: Week
+                        status: Approved
+                      -
+                        id: 5
+                        amount: '284000.00'
+                        term: 6
+                        term_unit: Week
+                        status: Approved
+                      -
+                        id: 6
+                        amount: '94000.00'
+                        term: 11
+                        term_unit: Week
+                        status: Approved
+                      -
+                        id: 7
+                        amount: '103000.00'
+                        term: 7
+                        term_unit: Week
+                        status: Approved
+                      -
+                        id: 11
+                        amount: '30000.00'
+                        term: 3
+                        term_unit: Week
+                        status: Approved
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        amount:
+                          type: string
+                          example: '60000.00'
+                        term:
+                          type: integer
+                          example: 12
+                        term_unit:
+                          type: string
+                          example: Week
+                        status:
+                          type: string
+                          example: Approved
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Success
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The selected status is invalid.'
+                  errors:
+                    status:
+                      - 'The selected status is invalid.'
+                properties:
+                  message:
+                    type: string
+                    example: 'The selected status is invalid.'
+                  errors:
+                    type: object
+                    properties:
+                      status:
+                        type: array
+                        example:
+                          - 'The selected status is invalid.'
+                        items:
+                          type: string
+      tags:
+        - Loan
+    post:
+      summary: Store
+      operationId: store
+      description: 'Create a new loan for authenticated user.'
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 13
+                    amount: '30000.00'
+                    term: 3
+                    term_unit: Week
+                    status: Approved
+                  success: true
+                  message: Created
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 13
+                      amount:
+                        type: string
+                        example: '30000.00'
+                      term:
+                        type: integer
+                        example: 3
+                      term_unit:
+                        type: string
+                        example: Week
+                      status:
+                        type: string
+                        example: Approved
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+      tags:
+        - Loan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: integer
+                  description: 'Amount. Must be at least 100.'
+                  example: 30000
+                term:
+                  type: integer
+                  description: 'Loan term. Must be at least 1.'
+                  example: 3
+              required:
+                - amount
+                - term
+  '/api/v1/loans/{loan_id}':
+    get:
+      summary: Show
+      operationId: show
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    amount: '60000.00'
+                    term: 12
+                    term_unit: Week
+                    status: Approved
+                    repayments:
+                      data:
+                        -
+                          id: 1
+                          amount: '5000.00'
+                          status: pending
+                          due_date: '2023-05-17'
+                        -
+                          id: 2
+                          amount: '5000.00'
+                          status: pending
+                          due_date: '2023-05-24'
+                        -
+                          id: 3
+                          amount: '5000.00'
+                          status: pending
+                          due_date: '2023-05-31'
+                        -
+                          id: 4
+                          amount: '5000.00'
+                          status: pending
+                          due_date: '2023-06-07'
+                        -
+                          id: 5
+                          amount: '5000.00'
+                          status: pending
+                          due_date: '2023-06-14'
+                        -
+                          id: 6
+                          amount: '5000.00'
+                          status: pending
+                          due_date: '2023-06-21'
+                        -
+                          id: 7
+                          amount: '5000.00'
+                          status: pending
+                          due_date: '2023-06-28'
+                        -
+                          id: 8
+                          amount: '5000.00'
+                          status: pending
+                          due_date: '2023-07-05'
+                        -
+                          id: 9
+                          amount: '5000.00'
+                          status: pending
+                          due_date: '2023-07-12'
+                        -
+                          id: 10
+                          amount: '5000.00'
+                          status: pending
+                          due_date: '2023-07-19'
+                        -
+                          id: 11
+                          amount: '5000.00'
+                          status: pending
+                          due_date: '2023-07-26'
+                        -
+                          id: 12
+                          amount: '5000.00'
+                          status: pending
+                          due_date: '2023-08-02'
+                  success: true
+                  message: Success
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      amount:
+                        type: string
+                        example: '60000.00'
+                      term:
+                        type: integer
+                        example: 12
+                      term_unit:
+                        type: string
+                        example: Week
+                      status:
+                        type: string
+                        example: Approved
+                      repayments:
+                        type: object
+                        properties:
+                          data:
+                            type: array
+                            example:
+                              -
+                                id: 1
+                                amount: '5000.00'
+                                status: pending
+                                due_date: '2023-05-17'
+                              -
+                                id: 2
+                                amount: '5000.00'
+                                status: pending
+                                due_date: '2023-05-24'
+                              -
+                                id: 3
+                                amount: '5000.00'
+                                status: pending
+                                due_date: '2023-05-31'
+                              -
+                                id: 4
+                                amount: '5000.00'
+                                status: pending
+                                due_date: '2023-06-07'
+                              -
+                                id: 5
+                                amount: '5000.00'
+                                status: pending
+                                due_date: '2023-06-14'
+                              -
+                                id: 6
+                                amount: '5000.00'
+                                status: pending
+                                due_date: '2023-06-21'
+                              -
+                                id: 7
+                                amount: '5000.00'
+                                status: pending
+                                due_date: '2023-06-28'
+                              -
+                                id: 8
+                                amount: '5000.00'
+                                status: pending
+                                due_date: '2023-07-05'
+                              -
+                                id: 9
+                                amount: '5000.00'
+                                status: pending
+                                due_date: '2023-07-12'
+                              -
+                                id: 10
+                                amount: '5000.00'
+                                status: pending
+                                due_date: '2023-07-19'
+                              -
+                                id: 11
+                                amount: '5000.00'
+                                status: pending
+                                due_date: '2023-07-26'
+                              -
+                                id: 12
+                                amount: '5000.00'
+                                status: pending
+                                due_date: '2023-08-02'
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  example: 1
+                                amount:
+                                  type: string
+                                  example: '5000.00'
+                                status:
+                                  type: string
+                                  example: pending
+                                due_date:
+                                  type: string
+                                  example: '2023-05-17'
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Success
+      tags:
+        - Loan
+    parameters:
+      -
+        in: path
+        name: loan_id
+        description: 'The ID of the loan.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/loans/{loan_id}/pay':
+    post:
+      summary: Pay
+      operationId: pay
+      description: 'Make a payment for an approved loan'
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    amount: '100000.00'
+                    change_amount: '95000.00'
+                  success: true
+                  message: Success
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      amount:
+                        type: string
+                        example: '100000.00'
+                      change_amount:
+                        type: string
+                        example: '95000.00'
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Success
+      tags:
+        - Loan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                  description: 'Amount. Must be at least 1.'
+                  example: 100000.0
+                pay_future_repayments:
+                  type: boolean
+                  description: 'Should whether continue paying for future repayments or not.'
+                  example: false
+              required:
+                - amount
+    parameters:
+      -
+        in: path
+        name: loan_id
+        description: 'The ID of the loan.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: Auth
+    description: ''
+  -
+    name: Loan
+    description: ''
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: ''
+security:
+  -
+    default: []

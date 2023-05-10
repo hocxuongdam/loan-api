@@ -1,0 +1,332 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost:8000"
+        }
+    ],
+    "info": {
+        "name": "Loan API",
+        "_postman_id": "a6645cd4-2953-4225-9056-ca79d8af744c",
+        "description": "Mini Aspire API",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Auth",
+            "description": "",
+            "item": [
+                {
+                    "name": "Login",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"duymai@gmail.com\",\"password\":\"password\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\": {\"token\": \"bearer_token\"}, \"success\": {\"message\": \"Success\"}}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"errors\": \"Unauthenticated\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Loan",
+            "description": "",
+            "item": [
+                {
+                    "name": "List",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/loans",
+                            "query": [
+                                {
+                                    "key": "status",
+                                    "value": "approved",
+                                    "description": "Status. Must be one of pending, approved, rejected, or paid.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/loans?status=approved"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "List all current loans of the authenticated user"
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":1,\"amount\":\"60000.00\",\"term\":12,\"term_unit\":\"Week\",\"status\":\"Approved\"},{\"id\":2,\"amount\":\"238000.00\",\"term\":10,\"term_unit\":\"Week\",\"status\":\"Approved\"},{\"id\":3,\"amount\":\"137000.00\",\"term\":6,\"term_unit\":\"Week\",\"status\":\"Approved\"},{\"id\":4,\"amount\":\"210000.00\",\"term\":12,\"term_unit\":\"Week\",\"status\":\"Approved\"},{\"id\":5,\"amount\":\"284000.00\",\"term\":6,\"term_unit\":\"Week\",\"status\":\"Approved\"},{\"id\":6,\"amount\":\"94000.00\",\"term\":11,\"term_unit\":\"Week\",\"status\":\"Approved\"},{\"id\":7,\"amount\":\"103000.00\",\"term\":7,\"term_unit\":\"Week\",\"status\":\"Approved\"},{\"id\":11,\"amount\":\"30000.00\",\"term\":3,\"term_unit\":\"Week\",\"status\":\"Approved\"}],\"success\":true,\"message\":\"Success\"}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\": \"The selected status is invalid.\",\"errors\": {\"status\": [\"The selected status is invalid.\"]}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Show",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/loans\/:loan_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/loans\/:loan_id",
+                            "variable": [
+                                {
+                                    "id": "loan_id",
+                                    "key": "loan_id",
+                                    "value": "1",
+                                    "description": "The ID of the loan."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "58"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":1,\"amount\":\"60000.00\",\"term\":12,\"term_unit\":\"Week\",\"status\":\"Approved\",\"repayments\":{\"data\":[{\"id\":1,\"amount\":\"5000.00\",\"status\":\"pending\",\"due_date\":\"2023-05-17\"},{\"id\":2,\"amount\":\"5000.00\",\"status\":\"pending\",\"due_date\":\"2023-05-24\"},{\"id\":3,\"amount\":\"5000.00\",\"status\":\"pending\",\"due_date\":\"2023-05-31\"},{\"id\":4,\"amount\":\"5000.00\",\"status\":\"pending\",\"due_date\":\"2023-06-07\"},{\"id\":5,\"amount\":\"5000.00\",\"status\":\"pending\",\"due_date\":\"2023-06-14\"},{\"id\":6,\"amount\":\"5000.00\",\"status\":\"pending\",\"due_date\":\"2023-06-21\"},{\"id\":7,\"amount\":\"5000.00\",\"status\":\"pending\",\"due_date\":\"2023-06-28\"},{\"id\":8,\"amount\":\"5000.00\",\"status\":\"pending\",\"due_date\":\"2023-07-05\"},{\"id\":9,\"amount\":\"5000.00\",\"status\":\"pending\",\"due_date\":\"2023-07-12\"},{\"id\":10,\"amount\":\"5000.00\",\"status\":\"pending\",\"due_date\":\"2023-07-19\"},{\"id\":11,\"amount\":\"5000.00\",\"status\":\"pending\",\"due_date\":\"2023-07-26\"},{\"id\":12,\"amount\":\"5000.00\",\"status\":\"pending\",\"due_date\":\"2023-08-02\"}]}},\"success\":true,\"message\":\"Success\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/loans",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/loans"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"amount\":30000,\"term\":3}"
+                        },
+                        "description": "Create a new loan for authenticated user."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "57"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 201,
+                            "body": "{\"data\":{\"id\":13,\"amount\":\"30000.00\",\"term\":3,\"term_unit\":\"Week\",\"status\":\"Approved\"},\"success\":true,\"message\":\"Created\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Pay",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/loans\/:loan_id\/pay",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/loans\/:loan_id\/pay",
+                            "variable": [
+                                {
+                                    "id": "loan_id",
+                                    "key": "loan_id",
+                                    "value": "1",
+                                    "description": "The ID of the loan."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"amount\":100000,\"pay_future_repayments\":false}"
+                        },
+                        "description": "Make a payment for an approved loan"
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "56"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":{\"amount\":\"100000.00\",\"change_amount\":\"95000.00\"},\"success\":true,\"message\":\"Success\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "Authorization",
+                "value": "2|UAVaJMaeapaUL4G2X1ZmI3SnL9aG6aHkGJxcav5Y",
+                "type": "string"
+            }
+        ]
+    }
+}

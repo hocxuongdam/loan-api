@@ -1,0 +1,1229 @@
+{
+	"info": {
+		"_postman_id": "51f07ecf-2530-41c1-b80d-39d42ed86076",
+		"name": "Loan APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3422362"
+	},
+	"item": [
+		{
+			"name": "Loan",
+			"item": [
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 15000,\n    \"term\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/loans",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"loans"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Request a new loan success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": 40000,\n    \"term\": 3\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/v1/loans",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"loans"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.17"
+								},
+								{
+									"key": "X-Xdebug-Profile-Filename",
+									"value": "/tmp/cachegrind.out.8.gz"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 May 2023 08:41:26 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 17,\n        \"amount\": \"40000.00\",\n        \"term\": 3,\n        \"term_unit\": \"Week\",\n        \"status\": \"Rejected\"\n    },\n    \"success\": true,\n    \"message\": \"Created\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/loans?status=approved",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"loans"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "approved"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List all loans",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/v1/loans",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"loans"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.17"
+								},
+								{
+									"key": "X-Xdebug-Profile-Filename",
+									"value": "/tmp/cachegrind.out.7.gz"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 May 2023 08:41:08 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"amount\": \"170000.00\",\n            \"term\": 5,\n            \"term_unit\": \"Week\",\n            \"status\": \"Approved\"\n        },\n        {\n            \"id\": 2,\n            \"amount\": \"141000.00\",\n            \"term\": 12,\n            \"term_unit\": \"Week\",\n            \"status\": \"Rejected\"\n        },\n        {\n            \"id\": 3,\n            \"amount\": \"294000.00\",\n            \"term\": 3,\n            \"term_unit\": \"Week\",\n            \"status\": \"Paid\"\n        },\n        {\n            \"id\": 4,\n            \"amount\": \"95000.00\",\n            \"term\": 6,\n            \"term_unit\": \"Week\",\n            \"status\": \"Approved\"\n        },\n        {\n            \"id\": 5,\n            \"amount\": \"21000.00\",\n            \"term\": 11,\n            \"term_unit\": \"Week\",\n            \"status\": \"Approved\"\n        },\n        {\n            \"id\": 7,\n            \"amount\": \"213000.00\",\n            \"term\": 10,\n            \"term_unit\": \"Week\",\n            \"status\": \"Approved\"\n        },\n        {\n            \"id\": 10,\n            \"amount\": \"17000.00\",\n            \"term\": 7,\n            \"term_unit\": \"Week\",\n            \"status\": \"Approved\"\n        },\n        {\n            \"id\": 11,\n            \"amount\": \"40000.00\",\n            \"term\": 3,\n            \"term_unit\": \"Week\",\n            \"status\": \"Approved\"\n        },\n        {\n            \"id\": 12,\n            \"amount\": \"40000.00\",\n            \"term\": 3,\n            \"term_unit\": \"Week\",\n            \"status\": \"Approved\"\n        },\n        {\n            \"id\": 13,\n            \"amount\": \"0.00\",\n            \"term\": 3,\n            \"term_unit\": \"Week\",\n            \"status\": \"Approved\"\n        },\n        {\n            \"id\": 14,\n            \"amount\": \"900.00\",\n            \"term\": 3,\n            \"term_unit\": \"Week\",\n            \"status\": \"Approved\"\n        },\n        {\n            \"id\": 15,\n            \"amount\": \"900.00\",\n            \"term\": 3,\n            \"term_unit\": \"Week\",\n            \"status\": \"Rejected\"\n        },\n        {\n            \"id\": 16,\n            \"amount\": \"900.00\",\n            \"term\": 3,\n            \"term_unit\": \"Week\",\n            \"status\": \"Rejected\"\n        }\n    ],\n    \"success\": true,\n    \"message\": \"Success\"\n}"
+						},
+						{
+							"name": "List all Approved loans",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/v1/loans?status=approved",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"loans"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "approved"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.17"
+								},
+								{
+									"key": "X-Xdebug-Profile-Filename",
+									"value": "/tmp/cachegrind.out.8.gz"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 May 2023 08:40:47 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"amount\": \"170000.00\",\n            \"term\": 5,\n            \"term_unit\": \"Week\",\n            \"status\": \"Approved\"\n        },\n        {\n            \"id\": 4,\n            \"amount\": \"95000.00\",\n            \"term\": 6,\n            \"term_unit\": \"Week\",\n            \"status\": \"Approved\"\n        },\n        {\n            \"id\": 5,\n            \"amount\": \"21000.00\",\n            \"term\": 11,\n            \"term_unit\": \"Week\",\n            \"status\": \"Approved\"\n        },\n        {\n            \"id\": 7,\n            \"amount\": \"213000.00\",\n            \"term\": 10,\n            \"term_unit\": \"Week\",\n            \"status\": \"Approved\"\n        },\n        {\n            \"id\": 10,\n            \"amount\": \"17000.00\",\n            \"term\": 7,\n            \"term_unit\": \"Week\",\n            \"status\": \"Approved\"\n        },\n        {\n            \"id\": 11,\n            \"amount\": \"40000.00\",\n            \"term\": 3,\n            \"term_unit\": \"Week\",\n            \"status\": \"Approved\"\n        },\n        {\n            \"id\": 12,\n            \"amount\": \"40000.00\",\n            \"term\": 3,\n            \"term_unit\": \"Week\",\n            \"status\": \"Approved\"\n        },\n        {\n            \"id\": 13,\n            \"amount\": \"0.00\",\n            \"term\": 3,\n            \"term_unit\": \"Week\",\n            \"status\": \"Approved\"\n        },\n        {\n            \"id\": 14,\n            \"amount\": \"900.00\",\n            \"term\": 3,\n            \"term_unit\": \"Week\",\n            \"status\": \"Approved\"\n        }\n    ],\n    \"success\": true,\n    \"message\": \"Success\"\n}"
+						},
+						{
+							"name": "Invalid status parameter",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/v1/loans?status=invalid-status",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"loans"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "invalid-status"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.17"
+								},
+								{
+									"key": "X-Xdebug-Profile-Filename",
+									"value": "/tmp/cachegrind.out.7.gz"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 May 2023 02:40:27 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"The selected status is invalid.\",\n    \"errors\": {\n        \"status\": [\n            \"The selected status is invalid.\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/loans/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"loans",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Show a loan with its repayments",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/v1/loans/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"loans",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.17"
+								},
+								{
+									"key": "X-Xdebug-Profile-Filename",
+									"value": "/tmp/cachegrind.out.7.gz"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 May 2023 08:40:15 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"amount\": \"170000.00\",\n        \"term\": 5,\n        \"term_unit\": \"Week\",\n        \"status\": \"Approved\",\n        \"repayments\": {\n            \"data\": [\n                {\n                    \"id\": 1,\n                    \"amount\": \"34000.00\",\n                    \"status\": \"overdue\",\n                    \"due_date\": \"2023-05-17\"\n                },\n                {\n                    \"id\": 2,\n                    \"amount\": \"34000.00\",\n                    \"status\": \"pending\",\n                    \"due_date\": \"2023-05-24\"\n                },\n                {\n                    \"id\": 3,\n                    \"amount\": \"34000.00\",\n                    \"status\": \"pending\",\n                    \"due_date\": \"2023-05-31\"\n                },\n                {\n                    \"id\": 4,\n                    \"amount\": \"34000.00\",\n                    \"status\": \"pending\",\n                    \"due_date\": \"2023-06-07\"\n                },\n                {\n                    \"id\": 5,\n                    \"amount\": \"34000.00\",\n                    \"status\": \"pending\",\n                    \"due_date\": \"2023-06-14\"\n                }\n            ]\n        }\n    },\n    \"success\": true,\n    \"message\": \"Success\"\n}"
+						},
+						{
+							"name": "Loan is not exist",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/v1/loans/19",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"loans",
+										"19"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.17"
+								},
+								{
+									"key": "X-Xdebug-Profile-Filename",
+									"value": "/tmp/cachegrind.out.7.gz"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 May 2023 08:39:25 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Not found\"\n}"
+						},
+						{
+							"name": "Access denied",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/v1/loans/6",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"loans",
+										"6"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.17"
+								},
+								{
+									"key": "X-Xdebug-Profile-Filename",
+									"value": "/tmp/cachegrind.out.8.gz"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 May 2023 08:39:43 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "56"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Unauthorized\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Pay",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 5000,\n    \"pay_future_repayments\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/loans/18/pay",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"loans",
+								"18",
+								"pay"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Pay for 1 repayment only",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": 6000,\n    \"pay_future_repayments\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/v1/loans/17/pay",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"loans",
+										"17",
+										"pay"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.17"
+								},
+								{
+									"key": "X-Xdebug-Profile-Filename",
+									"value": "/tmp/cachegrind.out.8.gz"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 May 2023 11:22:00 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"amount\": \"6000.00\",\n        \"change_amount\": \"1000.00\"\n    },\n    \"success\": true,\n    \"message\": \"Success\"\n}"
+						},
+						{
+							"name": "Pay as much repayments as possible",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": 12000,\n    \"pay_future_repayments\": true\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/v1/loans/17/pay",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"loans",
+										"17",
+										"pay"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.17"
+								},
+								{
+									"key": "X-Xdebug-Profile-Filename",
+									"value": "/tmp/cachegrind.out.7.gz"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 May 2023 11:22:30 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"amount\": \"12000.00\",\n        \"change_amount\": \"2000.00\"\n    },\n    \"success\": true,\n    \"message\": \"Success\"\n}"
+						},
+						{
+							"name": "Insufficient amount",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": 3000,\n    \"pay_future_repayments\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/v1/loans/17/pay",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"loans",
+										"17",
+										"pay"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.17"
+								},
+								{
+									"key": "X-Xdebug-Profile-Filename",
+									"value": "/tmp/cachegrind.out.7.gz"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 May 2023 10:49:56 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Repayment amount must be at least 5000.00\"\n}"
+						},
+						{
+							"name": "Loan status is not approved",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": 3000,\n    \"pay_future_repayments\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/v1/loans/2/pay",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"loans",
+										"2",
+										"pay"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.17"
+								},
+								{
+									"key": "X-Xdebug-Profile-Filename",
+									"value": "/tmp/cachegrind.out.8.gz"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 May 2023 11:21:02 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"This loan is not payable\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.collectionVariables.set('auth_token', jsonData.data.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"duymai@gmail.com\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Login success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"duymai@gmail.com\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.22.1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.1.17"
+						},
+						{
+							"key": "X-Xdebug-Profile-Filename",
+							"value": "/tmp/cachegrind.out.8.gz"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 10 May 2023 08:42:16 GMT"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"token\": \"2|v4K8YbYJGiAQPpMPgCCWpECYcdvN9wKGq3eZYBNH\"\n    },\n    \"success\": true,\n    \"message\": \"Success\"\n}"
+				},
+				{
+					"name": "Login with wrong password",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"duymai@gmail.com\",\n    \"password\": \"wrong-password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.22.1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.1.17"
+						},
+						{
+							"key": "X-Xdebug-Profile-Filename",
+							"value": "/tmp/cachegrind.out.7.gz"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 10 May 2023 08:42:56 GMT"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"Unauthorized\"\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{auth_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.request.headers.add({key: 'Accept', value: 'application/json' });"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "auth_token",
+			"value": ""
+		}
+	]
+}

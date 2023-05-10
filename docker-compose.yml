@@ -1,0 +1,63 @@
+services:
+  php:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+      args:
+        user: admin
+        uid: 1000
+    image: app-img-php
+    container_name: app-php
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./backend:/var/www
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: app-nginx
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./backend:/var/www
+      - ./docker/nginx:/etc/nginx/conf.d/
+    networks:
+      - app-network
+
+  db:
+    image: mysql:8.0
+    container_name: app-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: loan
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_PASSWORD: password
+      MYSQL_USER: user
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    ports:
+      - 3306:3306
+    volumes:
+      - ./docker/db:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+
+  redis:
+    image: redis:alpine
+    container_name: app-redis
+    command: redis-server --appendonly yes
+    volumes:
+    - ./data/redis:/data
+    ports:
+      - "8002:6379"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
